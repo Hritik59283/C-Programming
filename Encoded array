@@ -1,0 +1,31 @@
+using System;
+
+public class Program
+{
+    public static void findOriginalFirstAndSum(int[] input1, out int output1, out int output2)
+    {
+        int firstNumber = input1[0]; // First number in the encoded array remains unchanged
+        int sum = firstNumber;
+
+        // Decode the array to find the sum of all numbers in the original array
+        for (int i = 1; i < input1.Length; i++)
+        {
+            input1[i] += input1[i - 1]; // Decode the current element
+            sum += input1[i]; // Add it to the sum
+        }
+
+        output1 = firstNumber; // Store the first number in the original array
+        output2 = sum; // Store the sum of all numbers in the original array
+    }
+
+    public static void Main(string[] args)
+    {
+        int[] encodedArray = { 3, -4, 6, 2, -6, 3 };
+        int originalFirstNumber, sumOfOriginalArray;
+
+        findOriginalFirstAndSum(encodedArray, out originalFirstNumber, out sumOfOriginalArray);
+
+        Console.WriteLine("First number in original array: " + originalFirstNumber);
+        Console.WriteLine("Sum of all numbers in original array: " + sumOfOriginalArray);
+    }
+}
